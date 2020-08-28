@@ -18,7 +18,6 @@
 - has_many :items
 - has_many :comments
 - has_many :customers
-- has_one  :customers_address
 
 ## items テーブル
 
@@ -39,7 +38,7 @@
 
 - has_many   :comments
 - has_one    :customers
-- belongs_to :users
+- belongs_to :user
 
 ## comments テーブル
 
@@ -51,8 +50,8 @@
 
 ### Association
 
-- belongs_to :users
-- belongs_to :items
+- belongs_to :user
+- belongs_to :item
 
 ## customers テーブル
 
@@ -63,8 +62,9 @@
 
 ### Association
 
-- belongs_to :users
-- belongs_to :items
+- belongs_to :user
+- belongs_to :item
+- has_one    :customers_address
 
 ## customers_address テーブル
 
@@ -76,9 +76,8 @@
 | house_number  | string     | null: false                    |
 | building_name | string     |                                |
 | phone_number  | string     | null: false                    |
-| user          | references | null: false, foreign_key: true |
+| customer      | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :users
-- has_many   :customers
+- belongs_to   :customer
