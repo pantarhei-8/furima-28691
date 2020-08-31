@@ -1,6 +1,4 @@
 class ApplicationController < ActionController::Base
-  # ログインしていないユーザーをログインページの画面に促す
-  # before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
