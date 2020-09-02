@@ -7,14 +7,16 @@ class Item < ApplicationRecord
   belongs_to_active_hash :days_until_shipping
   
   belongs_to :user
+  has_one_attached :image
 
   with_options presence: true do
-    validates :item_image
+    validates :image
     validates :item_name
     validates :item_text
   end
   
   validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than: 9999999 }
+  # validates :price, format: { with: /\A[+-]?\d+\z/, message: "Out of setting range" }, length: { in: 3..7 }
 
   #プルダウンの選択が「--」の時は保存できないようにする
   with_options numericality: { other_than: 1, message: "Select" } do
