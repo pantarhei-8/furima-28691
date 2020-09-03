@@ -7,16 +7,7 @@
     <h2 class="items-sell-title">商品の情報を入力</h2>
     <%= form_with model: @item, local: true do |f| %>
 
-    <%# <% render 'shared/error_messages', model: f.object %>
-    <% if @item.errors.any? %>
-    <div class="error-alert">
-      <ul>
-        <% @item.errors.full_messages.each do |message| %>
-        <li class='error-message'><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-    <% end %>
+    <%= render 'shared/error_messages', model: f.object %>
 
     <%# 出品画像 %>
     <div class="img-upload">
@@ -57,7 +48,6 @@
           カテゴリー
           <span class="indispensable">必須</span>
         </div>
-        <%# <%= f.collection_select(:category_id, [], :hoge, :hoge, {}, {class:"select-box", id:"item-category"}) %>
         <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"select-box", id:"item-category"}) %>
         <div class="weight-bold-text">
           商品の状態
@@ -107,7 +97,7 @@
             <span class="indispensable">必須</span>
           </div>
           <span class="sell-yen">¥</span>
-          <%= f.text_field :price, class:"price-input", id:"item-price", placeholder:"例）300" %>
+          <%= f.text_field :price, class:"price-input", id:"item-price", placeholder:"例）300", value:"" %>
         </div>
         <div class="price-content">
           <span>販売手数料 (10%)</span>

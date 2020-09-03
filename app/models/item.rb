@@ -15,7 +15,7 @@ class Item < ApplicationRecord
     validates :item_text
   end
   
-  validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than: 9999999 }
+  validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than: 9999999, message: "Out of setting range" }
   # validates :price, format: { with: /\A[+-]?\d+\z/, message: "Out of setting range" }, length: { in: 3..7 }
 
   #プルダウンの選択が「--」の時は保存できないようにする
