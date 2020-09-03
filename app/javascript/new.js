@@ -1,10 +1,7 @@
 window.addEventListener('input', function(){
-  const price = document.getElementById('item-price');
-  const addTaxPrice = document.getElementById('add-tax-price').innerText = Math.round(price.value * 0.1);
-  const profit = document.getElementById('profit').innerText = Math.round(price.value - addTaxPrice) ;
-  // price.addEventListener('input', function() {
-  // });
-  // console.log(price.value);
-  // console.log(addTaxPrice);
-  // console.log(profit);
+  const price = document.getElementById('item-price').value;
+  const addTaxPrice = Math.round(price * 0.1);
+  const profit = Math.round(price - addTaxPrice);
+  document.getElementById('add-tax-price').innerText = addTaxPrice.toLocaleString("jp");
+  document.getElementById('profit').innerText = profit.toLocaleString("jp");
 })
