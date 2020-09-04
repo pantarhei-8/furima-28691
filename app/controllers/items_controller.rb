@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
   def index
+    @items = Item.all
+    # @customer = Customer.select("user_id")
   end
 
   def new
