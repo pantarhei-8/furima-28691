@@ -1,7 +1,6 @@
 class ItemsController < ApplicationController
   def index
-    @items = Item.all
-    # @customer = Customer.select("user_id")
+    @items = Item.all.order("created_at ASC")
   end
 
   def new
