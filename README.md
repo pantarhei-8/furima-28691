@@ -36,7 +36,7 @@
 ### Association
 
 - has_many   :comments
-- has_one    :customers
+- has_one    :customer
 - belongs_to :user
 
 ## comments テーブル
@@ -65,7 +65,7 @@
 - belongs_to :item
 - has_one    :order
 
-## order テーブル
+## orders テーブル
 
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
