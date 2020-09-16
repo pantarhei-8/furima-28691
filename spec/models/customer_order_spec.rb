@@ -35,9 +35,21 @@ RSpec.describe CustomerOrder, type: :model do
           @customer_order.valid?
           expect(@customer_order.errors.full_messages).to include("Postal code Input correctly")
         end
+
+        it '郵便番号が000-0000以外の形では購入できないこと' do
+          @customer_order.postal_code = "1232-456"
+          @customer_order.valid?
+          expect(@customer_order.errors.full_messages).to include("Postal code Input correctly")
+        end
         
         it '配送先の都道府県が空では購入できないこと' do
           @customer_order.shipping_origin_id = nil
+          @customer_order.valid?
+          expect(@customer_order.errors.full_messages).to include("Shipping origin Select")
+        end
+
+        it '配送先の都道府県がid:1では購入できないこと' do
+          @customer_order.shipping_origin_id = 1
           @customer_order.valid?
           expect(@customer_order.errors.full_messages).to include("Shipping origin Select")
         end
@@ -62,6 +74,12 @@ RSpec.describe CustomerOrder, type: :model do
         
         it '電話番号にはハイフンがあると購入できないこと' do
           @customer_order.phone_number = "090-123-1234"
+          @customer_order.valid?
+          expect(@customer_order.errors.full_messages).to include("Phone number can't be blank")
+        end
+
+        it '電話番号が12桁以上あると購入できないこと' do
+          @customer_order.phone_number = "0909-1234-1234"
           @customer_order.valid?
           expect(@customer_order.errors.full_messages).to include("Phone number can't be blank")
         end
