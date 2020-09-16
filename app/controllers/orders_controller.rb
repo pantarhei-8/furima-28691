@@ -46,8 +46,8 @@ class OrdersController < ApplicationController
 
   def correct_user
     set_item
-    if @item.user_id == current_user.id
-      redirect_to root_path 
+    if @item.user_id == current_user.id || @item.customer
+      redirect_to root_path
     end
   end
 end
