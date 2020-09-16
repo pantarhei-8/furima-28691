@@ -36,7 +36,7 @@
 ### Association
 
 - has_many   :comments
-- has_one    :customers
+- has_one    :customer
 - belongs_to :user
 
 ## comments テーブル
@@ -63,19 +63,19 @@
 
 - belongs_to :user
 - belongs_to :item
-- has_one    :customers_address
+- has_one    :order
 
-## customers_address テーブル
+## orders テーブル
 
-| Column        | Type       | Options                        |
-| ------------- | ---------- | ------------------------------ |
-| postal_code   | string     | null: false                    |
-| prefecture_id | integer    | null: false                    |
-| city          | string     | null: false                    |
-| house_number  | string     | null: false                    |
-| building_name | string     |                                |
-| phone_number  | string     | null: false                    |
-| customer      | references | null: false, foreign_key: true |
+| Column             | Type       | Options                        |
+| ------------------ | ---------- | ------------------------------ |
+| postal_code        | string     | null: false                    |
+| shipping_origin_id | integer    | null: false                    |
+| city               | string     | null: false                    |
+| house_number       | string     | null: false                    |
+| building_name      | string     |                                |
+| phone_number       | string     | null: false                    |
+| customer           | references | null: false, foreign_key: true |
 
 ### Association
 
