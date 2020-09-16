@@ -1,9 +1,9 @@
 class OrdersController < ApplicationController
   before_action :set_item
-
+  before_action :signed_in_user, only: [:index]
+  before_action :correct_user,   only: [:index, :create]
+  
   def index
-    # @customer_order = CustomerOrder.new
-    # @items = Item.all
     @order = CustomerOrder.new
   end
 
@@ -12,7 +12,6 @@ class OrdersController < ApplicationController
   end
   
   def create
-    # binding.pry
     @order = CustomerOrder.new(order_params)
     if @order.valid?
       pay_item
@@ -40,5 +39,17 @@ class OrdersController < ApplicationController
       currency:'jpy'                 # 通貨の種類(日本円)
     )
   end
+
+  def signed_in_user
+    redirect_to new_user_session_path unless signed_in?
+  end
+
+  def correct_user
+    set_item
+    if @item.user_id == current_user.id
+      redirect_to root_path 
+    end
+  end
+
 
 end
